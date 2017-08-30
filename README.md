@@ -27,6 +27,11 @@ npm install --save apollo-tote
     handlePass={(data) => !!(data && data.user && data.user.id)}
     handleNo={() => Store.dispatch({ type: 'LOG_OUT' })}
     renderLoading={() => <App.Loading />}
+    query={`
+      user {
+        id
+      }
+    `}
     render={(value, error) => {
       return <App />
     }}
