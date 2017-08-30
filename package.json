@@ -1,6 +1,6 @@
 {
   "name": "apollo-tote",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A declarative approach to handling your graphql queries in React",
   "jsnext:main": "dist/apollo-tote.es.js",
   "module": "dist/apollo-tote.es.js",
