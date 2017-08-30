@@ -10,8 +10,9 @@ class ApolloTote extends React.Component {
 
   static propTypes = {
     lazy: PropTypes.bool,
-    query: PropTypes.func,
-    variables: PropTypes.object
+    query: PropTypes.string,
+    variables: PropTypes.object,
+    handleNo: PropTypes.func
   }
 
   willUnmount = false
@@ -48,6 +49,14 @@ class ApolloTote extends React.Component {
 
       if (result.error) {
         throw result.error
+      }
+
+      const passTest = this.props.handlePass(result.data)
+
+      if (passTest) {
+        this.props.handleYes && this.props.handleYes()
+      } else {
+        this.props.handleNo && this.props.handleNo()
       }
 
       this.setState({ loading: false, error: undefined, value: result.data })
