@@ -32,22 +32,8 @@
   },
   "devDependencies": {
     "babel-eslint": "^7.2.3",
-    "babel-polyfill": "^6.23.0",
-    "babel-preset-env": "^1.4.0",
-    "babel-preset-react": "^6.24.1",
-    "babel-preset-stage-2": "^6.24.1",
-    "gzip-size-cli": "^2.0.0",
-    "npm-run-all": "^4.0.2",
-    "pretty-bytes-cli": "^2.0.0",
     "prop-types": "^15.5.8",
-    "rimraf": "^2.6.1",
-    "rollup": "^0.47.2",
-    "rollup-plugin-babel": "^3.0.1",
-    "rollup-plugin-commonjs": "^8.1.0",
-    "rollup-plugin-node-resolve": "^3.0.0",
-    "standard": "^10.0.2",
-    "strip-json-comments-cli": "^1.0.1",
-    "uglify-js": "^2.8.22"
+    "standard": "^10.0.2"
   },
   "peerDependencies": {
     "graphql-tag": "^2.4.2",
