@@ -45,7 +45,7 @@ npm install --save apollo-tote
       }
     `}
     renderLoading={() => <Avatar.Loading />}
-    render{value => <Avatar imageUrl={value.user.imageUrl}}
+    render={value => <Avatar imageUrl={value.user.imageUrl />}
   />
 ```
 
