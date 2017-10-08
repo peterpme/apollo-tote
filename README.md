@@ -32,7 +32,7 @@ npm install --save apollo-tote
     handlePass={() => Store.dispatch({ type: 'LOG_IN' })}
     renderError={error => this._renderError(error)}
     renderLoading={() => <App.Loading />}
-    render={value => <App userId={value.user.id} />}
+    render={() => <App />}
   />
 ```
 
