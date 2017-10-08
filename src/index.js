@@ -5,28 +5,31 @@ import gql from 'graphql-tag'
 
 class ApolloTote extends React.Component {
   static defaultProps = {
-    lazy: false
+    skip: false
   }
 
   static propTypes = {
-    lazy: PropTypes.bool,
+    skip: PropTypes.bool,
     query: PropTypes.string,
     variables: PropTypes.object,
-    handleNo: PropTypes.func
+    test: PropTypes.func,
+    render: PropTypes.func,
+    renderPass: PropTypes.func,
+    renderFail: PropTypes.func
   }
 
-  willUnmount = false
-  query = null
   state = {
     loading: false,
     value: undefined,
     error: undefined
   }
 
+  willUnmount = false
+  query = null
+
   componentWillMount () {
     this.query = gql(this.props.query)
-    if (this.props.lazy) return
-
+    if (this.props.skip) return
     this._runQuery()
   }
 
@@ -35,51 +38,59 @@ class ApolloTote extends React.Component {
   }
 
   _runQuery = async () => {
-    this.setState({ loading: true })
     if (this.willUnmount) return
+    const { variables, client } = this.props
+    this.setState({ loading: true })
 
     const options = { query: this.query }
 
-    if (this.props.variables) {
-      options.variables = this.props.variables
+    if (variables) {
+      options.variables = variables
     }
 
     try {
-      const result = await this.props.client.query(options)
+      const result = await client.query(options)
 
       if (result.error) {
         throw result.error
       }
 
-      const passTest = this.props.handlePass(result.data)
-
-      if (passTest) {
-        this.props.handleYes && this.props.handleYes()
-      } else {
-        this.props.handleNo && this.props.handleNo()
-      }
+      this._handleTestCase(result.data)
 
       this.setState({ loading: false, error: undefined, value: result.data })
     } catch (error) {
       this.setState({ loading: false, error, value: undefined })
-      return undefined
+    }
+  }
+
+  _handleTestCase = (data) => {
+    const result = this.props.test(data)
+
+    if (result) {
+      this.props.handlePass && this.props.handlePass()
+    } else {
+      this.props.handleFail && this.props.handleFail()
     }
   }
 
   render () {
-    if (!this.props.render) return null
+    const { render, renderLoading, renderError } = this.props
     const { loading, value, error } = this.state
 
     if (loading) {
-      if (!this.props.renderLoading) return null
-      return this.props.renderLoading()
+      if (!renderLoading) return null
+      return renderLoading()
     }
 
-    return this.props.render({
-      getValue: this._getValue,
-      loading,
+    if (error) {
+      if (!renderError) return null
+      return renderError(error)
+    }
+
+    return render({
       value,
-      error
+      error,
+      loading
     })
   }
 }
