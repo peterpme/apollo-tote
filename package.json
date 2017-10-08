@@ -1,6 +1,6 @@
 {
   "name": "apollo-tote",
-  "version": "0.1.4",
+  "version": "1.0.0",
   "description": "A declarative approach to handling your graphql queries in React",
   "main": "src/index.js",
   "scripts": {
