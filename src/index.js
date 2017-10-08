@@ -79,13 +79,11 @@ class ApolloTote extends React.PureComponent {
     const { render, renderLoading, renderError } = this.props
     const { loading, value, error } = this.state
 
-    if (loading) {
-      if (!renderLoading) return null
+    if (loading && renderLoading) {
       return renderLoading()
     }
 
-    if (error) {
-      if (!renderError) return null
+    if (error && renderError) {
       return renderError(error)
     }
 
