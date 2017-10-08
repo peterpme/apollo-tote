@@ -22,12 +22,30 @@ npm install --save apollo-tote
 
 ```jsx
   <ApolloTote
+    query={`
+      user {
+        id
+      }
+    `}
     test={data => !!(data && data.user && data.user.id)}
     handleFail={() => Store.dispatch({ type: 'LOG_OUT' })}
     handlePass={() => Store.dispatch({ type: 'LOG_IN' })}
     renderError={error => this._renderError(error)}
     renderLoading={() => <App.Loading />}
     render={value => <App userId={value.user.id} />}
+  />
+```
+
+- Render loading component until data comes back.
+```jsx
+  <ApolloTote
+    query={`
+      user {
+        imageUrl
+      }
+    `}
+    renderLoading={() => <Avatar.Loading />}
+    render{value => <Avatar imageUrl={value.user.imageUrl}}
   />
 ```
 
