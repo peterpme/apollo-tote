@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { withApollo } from 'react-apollo'
 import gql from 'graphql-tag'
 
-class ApolloTote extends React.Component {
+class ApolloTote extends React.PureComponent {
   static defaultProps = {
     skip: false
   }
