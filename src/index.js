@@ -13,9 +13,11 @@ class ApolloTote extends React.Component {
     query: PropTypes.string,
     variables: PropTypes.object,
     test: PropTypes.func,
+    handlePass: PropTypes.func,
+    handleFail: PropTypes.func,
     render: PropTypes.func,
-    renderPass: PropTypes.func,
-    renderFail: PropTypes.func
+    renderError: PropTypes.func,
+    renderLoading: PropTypes.func
   }
 
   state = {
