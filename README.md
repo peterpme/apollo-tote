@@ -21,10 +21,12 @@ npm install --save apollo-tote
 - Fetch `current user` query. If an api token exists but is no longer valid (ie: cleared database), log user out.
 
 ```jsx
-  <ApolloTote
+<ApolloTote
     query={`
-      user {
-        id
+      query {
+        user {
+          id
+        }
       }
     `}
     test={data => !!(data && data.user && data.user.id)}
@@ -33,20 +35,22 @@ npm install --save apollo-tote
     renderError={error => this._renderError(error)}
     renderLoading={() => <App.Loading />}
     render={() => <App />}
-  />
+/>
 ```
 
 - Render loading component until data comes back.
 ```jsx
-  <ApolloTote
+<ApolloTote
     query={`
-      user {
-        imageUrl
+      query {
+        user {
+          imageUrl
+        }
       }
     `}
     renderLoading={() => <Avatar.Loading />}
-    render={value => <Avatar imageUrl={value.user.imageUrl />}
-  />
+    render={value => <Avatar imageUrl={value.user.imageUrl} />}
+/>
 ```
 
 ## PropTypes
